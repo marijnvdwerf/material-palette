@@ -10,7 +10,7 @@ function assertRGBEqualsHSL(rgb, hsl) {
 
 describe('ColorUtils', function() {
     it('should convert rgb to hsl', function() {
-        assertRGBEqualsHSL([224, 60, 70], [-3.6585376, 0.7256638, 0.5568628]);
-        assertRGBEqualsHSL([218, 219, 208], [65.454544, 0.1325301, 0.8372549]);
+        assertRGBEqualsHSL([224, 60, 70], [356, 0.7256638, 0.5568628]);
+        assertRGBEqualsHSL([218, 219, 208], [65, 0.1325301, 0.8372549]);
     });
 });
