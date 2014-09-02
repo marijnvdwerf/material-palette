@@ -11,6 +11,7 @@
   "dependencies": {
     "browserify": "^5.11.0",
     "coffeeify": "^0.7.0",
+    "color-convert": "^0.5.0",
     "js-priority-queue": "^0.1.0",
     "promise": "^5.0.0",
     "underscore": "^1.7.0"
