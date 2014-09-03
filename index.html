@@ -1,0 +1,133 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Material Palette</title>
+    <link rel="stylesheet" href="gh-fork-ribbon.css">
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .wrapper {
+            width: 640px;
+            margin: 0 auto;
+        }
+
+        .container {
+            height: 360px;
+            background: #eee;
+            border-radius: 4px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container img {
+            display: block;
+            max-height: 100%;
+        }
+
+        .palette {
+            padding: 16px 0;
+            text-align: center;
+        }
+
+        .paletteItem {
+            width: 48px;
+            height: 48px;
+            text-align: center;
+            display: inline-block;
+            line-height: 48px;
+            background: #fff;
+            color: rgba(0, 0, 0, .24);
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h1>Material Palette Generator</h1>
+
+    <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/marijnvdwerf/material-palette">Fork me on GitHub</a>
+        </div>
+    </div>
+    <div class="container">
+        <p>Drop an image in this area to generate a palette</p>
+    </div>
+    <div class="palette">
+        <span class="paletteItem" title="Vibrant" data-color="vibrant">V</span>
+        <span class="paletteItem" title="Light Vibrant" data-color="lightVibrant">LV</span>
+        <span class="paletteItem" title="Dark Vibrant" data-color="darkVibrant">DV</span>
+        <span class="paletteItem" title="Muted" data-color="muted">M</span>
+        <span class="paletteItem" title="Light Muted" data-color="lightMuted">LM</span>
+        <span class="paletteItem" title="Dark Muted" data-color="darkMuted">DM</span>
+    </div>
+</div>
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="palette-dist.js"></script>
+<script>
+    var imageContainer = $('.container');
+    var paletteItems = $('.paletteItem');
+    var ribbon = $('.github-fork-ribbon');
+
+    var dropTarget = imageContainer[0];
+
+    // To enable drag and drop
+    dropTarget.addEventListener("dragover", function(evt) {
+        evt.preventDefault();
+    }, false);
+
+    // Handle dropped image file - only Firefox and Google Chrome
+    dropTarget.addEventListener("drop", function(evt) {
+        evt.preventDefault();
+
+        var files = evt.dataTransfer.files;
+
+        if (files.length === 0) {
+            return;
+        }
+
+        var file = files[0];
+
+        if (typeof FileReader === "undefined" || file.type.indexOf("image") === -1) {
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            imageContainer.empty();
+
+            var img = $('<img/>', {src: evt.target.result});
+            img.appendTo(imageContainer);
+            paletteItems.add(ribbon).css({background: ''});
+
+            Palette
+                    .generate(img)
+                    .done(function(palette) {
+                        var accentColors = palette.getAccentColors();
+                        paletteItems.each(function() {
+                            var color = accentColors[$(this).data('color')];
+                            if (color !== null) {
+                                $(this).css({background: color.toString()});
+                            }
+                        });
+
+                        var vibrantColor = palette.getVibrantColor();
+                        if (vibrantColor !== null) {
+                            ribbon.css({backgroundColor: vibrantColor.toString()});
+                        }
+
+                    },
+                    function(error) {
+                        console.error(error);
+                    });
+        };
+        reader.readAsDataURL(file);
+    }, false);
+
+</script>
+</body>
+</html>
