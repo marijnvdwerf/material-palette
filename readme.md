@@ -26,8 +26,8 @@ Issues
 There are (about) three reasons this library doesn't completely match the Java version
 - Images are scaled differently and colors might appear in different quantities
 - The RGB to HSL conversion is different, and the code might behave differently in edge cases (i.e. a float on Android might be just above 1.0, while in JS it's cut off at 1)
-- The PriorityQueues on both platforms behave differently when being iterated. To me it seems like the Java version only sorts objects that are inserted into the queue, whereas the simple JS implementation resorts the queue each time a new object is inserted.
+- The PriorityQueues on both platforms behave differently. I translated most of the Java code, yet objects still don't get sorted the same 100% of the time. Any help on this would be greatly appreciated.
 
-Acknowledgments
-===============
+Acknowledgements
+================
  - [Chris Banes](https://github.com/chrisbanes), author of the original Java-based library
