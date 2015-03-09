@@ -24,8 +24,15 @@
   },
   "devDependencies": {
     "babel": "^4.7.3",
+    "babelify": "^5.0.4",
     "browserify": "^9.0.3",
     "chai": "^2.1.1",
-    "mocha": "^2.2.1"
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-rename": "^1.2.0",
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-uglify": "^1.1.0",
+    "mocha": "^2.2.1",
+    "through2": "^0.6.3"
   }
 }
