@@ -1,8 +1,9 @@
 {
   "name": "material-palette",
-  "version": "0.2.0",
-  "description": "JS Translation of Pallete library in Android Support package",
-  "homepage": "https://github.com/marijnvdwerf/material-palette",
+  "version": "0.3.0",
+  "description": "JS Translation of Palette library in Android Support package",
+  "homepage": "http://marijnvdwerf.github.io/material-palette",
+  "repository": "https://github.com/marijnvdwerf/material-palette",
   "main": "lib/Palette.js",
   "keywords": [
     "colour",
